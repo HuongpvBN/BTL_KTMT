@@ -2,13 +2,13 @@
 
 module tb_MUX2to1;
 
-    // Tín hiệu test
+    // Signal test
     reg [31:0] input0;
     reg [31:0] input1;
     reg select;
     wire [31:0] out;
 
-    // Gọi module cần test
+    // Call module test
     MUX2to1 uut (
         .input0(input0),
         .input1(input1),

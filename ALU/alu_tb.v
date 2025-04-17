@@ -2,14 +2,14 @@
 
 module tb_ALU;
 
-    // Tín hiệu test
+    // Signal test
     reg [31:0] A;
     reg [31:0] B;
     reg [3:0] ALUcontrol_In;
     wire [31:0] Result;
     wire Zero;
 
-    // Gọi module ALU
+    // Call module ALU
     ALU uut (
         .A(A),
         .B(B),

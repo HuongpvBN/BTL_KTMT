@@ -1,4 +1,4 @@
-module RISCV_TOP_Tb;
+module Simple_Core_Tb;
 
     reg clk, rst;
     
