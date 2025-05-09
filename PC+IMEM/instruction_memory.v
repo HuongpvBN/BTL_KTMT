@@ -1,20 +1,21 @@
-module Instruction_Memory(rst, clk, read_address, instruction_out);
+module Instruction_Memory(
+    input rst, clk,
+    input [31:0] read_address,
+    output [31:0] instruction_out
+);
 
-input rst, clk;
-input [31:0] read_address;
-output [31:0] instruction_out;
-reg [31:0] I_Mem [63:0];  
-integer k;
-assign instruction_out = I_Mem[read_address];
+    reg [31:0] I_Mem [0:127];
+    integer k;
 
-always @(posedge clk or posedge rst)
-begin
-    if (rst) begin
-        for (k = 0; k < 64; k = k + 1) begin 
-            I_Mem[k] = 32'b00;  
-        end
-    end else begin
-        // R-type
+    assign instruction_out = I_Mem[read_address[31:2]]; 
+
+    always @(posedge clk or posedge rst)
+    begin
+        if (rst) begin
+            for (k = 0; k < 128; k = k + 1)
+                I_Mem[k] = 32'b0;
+
+             // R-type
         I_Mem[0] = 32'b0000000000000000000000000000000 ;       // no operation
         I_Mem[4] = 32'b0000000_11001_10000_000_01101_0110011;    // add x13, x16, x25
         I_Mem[8] = 32'b0100000_00011_01000_000_00101_0110011;     // sub x5, x8, x3
@@ -50,10 +51,8 @@ begin
         I_Mem[106] =  32'b0000000000000010100_00101_0010111;     // auipc x5, 20 (rd = PC + (imm << 12))
 	// J-type
 	I_Mem[110] = 32'b0_00000000_0_0000010100_00001_1101111;         // jal x1, 20
-
-
         
+        end
     end
-end
 
 endmodule

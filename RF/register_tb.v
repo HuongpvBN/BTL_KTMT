@@ -60,6 +60,16 @@ module tb_Register_File;
         Rs2 = 5'd4;
         $display("After Reset: read_data1 (R3) = %d, read_data2 (R4) = %d", read_data1, read_data2);
 
+ 	// Test 4: wire to x0 (Rd = 0)
+        Rd = 5'd0;        
+        Write_data = 32'hDEADBEEF;
+        RegWrite = 1;
+        #10;
+        RegWrite = 0;
+        Rs1 = 5'd0;         // read value x0
+        #10;
+        $display("Test x0: write DEADBEEF to x0, read_data1 (x0) = %h", read_data1);
+
         $display("===== End Simulation =====");
         $finish;
     end

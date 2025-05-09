@@ -7,7 +7,7 @@ module program_counter(
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            pc_out <= 32'b00;  
+            pc_out <= 32'b0;  
         end else begin
             pc_out <= pc_in;  
         end
