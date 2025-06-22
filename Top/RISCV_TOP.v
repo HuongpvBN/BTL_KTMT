@@ -1,5 +1,5 @@
 
-module Simple_Core(
+module RISCV_Top(
 		  input clk, rst
 		); 
 //....................................................................//

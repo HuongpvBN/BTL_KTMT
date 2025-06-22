@@ -51,10 +51,9 @@ begin
       end
     end
 
-   else if (RegWrite) begin
-    Registers[Rd] = Write_data;
-   end
-  Registers[0] = 32'b0;
+    else if (RegWrite ) begin
+      Registers[Rd] = Write_data;
+    end
   end
 
   assign read_data1 = Registers[Rs1];
